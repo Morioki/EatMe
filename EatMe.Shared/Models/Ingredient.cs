@@ -1,11 +1,13 @@
 ﻿#nullable enable
 using Postgrest.Attributes;
 using Postgrest.Models;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace EatMe.Db.Models;
 
 [Table("ingredients")]
-public class Ingredient : BaseModel {
+public class Ingredient : BaseModel, INotifyPropertyChanged {
     [PrimaryKey("id")]
     public int Id { get; set; }
 
@@ -31,4 +33,17 @@ public class Ingredient : BaseModel {
         obj is Ingredient ingredient && Id == ingredient.Id;
 
     public override int GetHashCode() => HashCode.Combine(Id);
+
+    public event PropertyChangedEventHandler? PropertyChanged;
+
+    private void OnPropertyChanged([CallerMemberName] string? propertyName = null) {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+    }
+
+    private bool SetField<T>(ref T field, T value, [CallerMemberName] string? propertyName = null) {
+        if (EqualityComparer<T>.Default.Equals(field, value)) return false;
+        field = value;
+        OnPropertyChanged(propertyName);
+        return true;
+    }
 }

@@ -1,5 +1,4 @@
-﻿using EatMe.Client.Data;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 
 namespace EatMe.Client {
     public static class MauiProgram {
@@ -14,11 +13,9 @@ namespace EatMe.Client {
             builder.Services.AddMauiBlazorWebView();
 
 #if DEBUG
-            builder.Services.AddBlazorWebViewDeveloperTools();
-            builder.Logging.AddDebug();
+    		builder.Services.AddBlazorWebViewDeveloperTools();
+    		builder.Logging.AddDebug();
 #endif
-
-            builder.Services.AddSingleton<WeatherForecastService>();
 
             return builder.Build();
         }
