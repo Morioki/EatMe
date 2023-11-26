@@ -30,8 +30,11 @@ namespace EatMe.Shared.Providers {
         }
 
         public Session? LoadSession() {
+            // TODO Causes System Hang Bug with Android .Net8
+
             try {
                 var json = _storageProvider.GetItem(CacheKey);
+
                 if (string.IsNullOrEmpty(json)) return null;
 
                 var session = JsonConvert.DeserializeObject<Session>(json);

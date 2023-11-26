@@ -13,15 +13,15 @@ using Supabase;
 namespace EatMe.Shared.Extensions {
     public static class ServiceCollectionExtensions {
 
-        ///<summary>
+        /// <summary>
         /// 
         /// </summary>
         /// <param name="services"></param>
-        public static void AddSupaSharedCore(this IServiceCollection services) {
+        public static void AddSupaSharedCore(this IServiceCollection services, string BaseAddress) {
             // Register Supabase with its session provider
             services.AddScoped(provider => {
-                const string url = "";
-                const string publicKey = "";
+                string url = BaseAddress; // TODO 
+                const string publicKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6ImFub24iLCJleHAiOjE5ODM4MTI5OTZ9.CRXP1A7WOeoJeXxjNni43kdQwgnWNReilDMblYTn_I0"; // TODO
 
                 var localStorageProvider = provider.GetRequiredService<ILocalStorageProvider>();
                 return new Client(url, publicKey, new SupabaseOptions {
@@ -41,6 +41,11 @@ namespace EatMe.Shared.Extensions {
             //new RecipeService(p.GetRequiredService<IAppStateService>(),
             //    p.GetRequiredService<Client>(),
             //    p.GetRequiredService<IPostgrestCacheProvider>()));
+
+            services.AddScoped<IIngredientService>(p =>
+                new IngredientService(p.GetRequiredService<IAppStateService>(),
+                p.GetRequiredService<Client>(),
+                p.GetRequiredService<IPostgrestCacheProvider>()));
 
             Console.WriteLine("Initialized Supabase Core.");
         }

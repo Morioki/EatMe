@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./**/*.{razor,html}'],
+    content: ['./EatMe.Client/**/*.{razor,html}',
+                './EatMe.Shared/**/*.{razor,html}'],
   darkMode: 'class',
   theme: {
     extend: {},
