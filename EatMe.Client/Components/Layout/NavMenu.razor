@@ -1,4 +1,4 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
+﻿@* <div class="top-row ps-3 navbar navbar-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="">EatMe.Client</a>
     </div>
@@ -25,3 +25,15 @@
         </div>
     </nav>
 </div>
+ *@
+
+<MudNavMenu>
+    <MudNavLink Match="NavLinkMatch.All"
+                Icon="@Icons.Material.Filled.Dashboard"
+                IconColor="Color.Inherit"
+                Href="">Home</MudNavLink>
+    <MudNavLink Match="NavLinkMatch.All"
+                Icon="@Icons.Material.Filled.LocalLibrary"
+                IconColor="Color.Inherit"
+                Href="wire">Wireframes</MudNavLink>
+</MudNavMenu>

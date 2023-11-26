@@ -2,6 +2,7 @@
 using EatMe.Shared.Interfaces;
 using EatMe.Shared.Services;
 using Microsoft.Extensions.Logging;
+using MudBlazor.Services;
 
 namespace EatMe.Client {
     public static class MauiProgram {
@@ -14,6 +15,7 @@ namespace EatMe.Client {
                 });
 
             builder.Services.AddMauiBlazorWebView();
+            builder.Services.AddMudServices();
 
 #if DEBUG
             builder.Services.AddBlazorWebViewDeveloperTools();
