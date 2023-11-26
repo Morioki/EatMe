@@ -10,7 +10,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 		.gitignore = .gitignore
 		global.json = global.json
+		package.json = package.json
 		README.md = README.md
+		tailwind.config.js = tailwind.config.js
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EatMe.Client", "EatMe.Client\EatMe.Client.csproj", "{4712A94B-E8C0-40CA-B0BB-2A8C3C954B57}"
