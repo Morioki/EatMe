@@ -1,6 +1,21 @@
 ﻿@page "/"
+@inject IAppStateService AppState
 
-<MudContainer Class="mt-16 px-8" MaxWidth="MaxWidth.False">
+<PageTitle>EatMe</PageTitle>
+
+@if (AppState.IsLoggedIn)
+{
+    <MudPaper Elevation="10" Class="pa-4" Style="height: 200px;">
+        @AppState.User
+    </MudPaper>
+}
+else
+{
+    @* Why does this need the auth prefix or using directive. Wouldn't the universal imports work *@
+    <AuthComponent ComponentType="typeof(LocalLoginButton)"/>
+}
+
+@* <MudContainer Class="mt-16 px-8" MaxWidth="MaxWidth.False">
     <MudGrid>
         <MudItem xs="12" sm="6" md="4">
             <MudPaper Elevation="2" Class="pa-4" Style="height: 200px;"></MudPaper>
@@ -34,4 +49,11 @@
             <MudPaper Elevation="2" Class="pa-4" Style="height: 200px;"></MudPaper>
         </MudItem>
     </MudGrid>
-</MudContainer>
+</MudContainer> *@
+
+@code {
+    protected override void OnInitialized()
+    {
+        AppState.PropertyChanged += (_, _) => StateHasChanged();
+    }
+}

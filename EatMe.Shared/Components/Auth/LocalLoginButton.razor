@@ -1,0 +1,32 @@
+﻿@using MudBlazor
+@using Interfaces
+@inject IAppStateService AppState
+@inject Supabase.Client Supabase
+
+<MudForm>
+<MudCardContent>
+    <MudTextField @bind-Value="Email" Label="Email" InputType="InputType.Email" Variant="Variant.Filled" Margin="Margin.Dense" />
+    <MudTextField @bind-Value="Password" Label="Password" InputType="InputType.Password" Variant="Variant.Filled" Margin="Margin.Dense" />
+
+    @if (Clicked)
+        {
+            <MudText>@AppState.IsLoggedIn</MudText>
+        }
+    </MudCardContent>
+<MudCardActions>
+    <div class="align-right">
+        <MudButton OnClick="HandleButtonClicked" Variant="Variant.Filled" Color="Color.Primary">LogIn</MudButton>
+    </div>
+</MudCardActions>
+</MudForm>
+@code {
+    public string Email { get; set; }
+    public string Password { get; set; }
+
+    public bool Clicked { get; set; }
+
+    private async void HandleButtonClicked()
+    {
+        await Supabase.Auth.SignIn(Email, Password);
+    }
+}

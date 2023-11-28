@@ -7,7 +7,6 @@ namespace EatMe.Shared.Interfaces {
         string GetItem(string key);
         void RemoveItem(string key);
         void SetItem(string key, string value);
-
         void Empty();
     }
 }
